@@ -69,8 +69,6 @@ spec:
         env:
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        - name: JWT_POLICY
-          value: third-party-jwt
         - name: PILOT_CERT_PROVIDER
           value: istiod
         - name: CA_ADDR
@@ -125,7 +123,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: docker.io/istio/proxyv2:1.19.10
+        image: docker.io/istio/proxyv2:1.22.1
         name: istio-proxy
         ports:
         - containerPort: 15020
@@ -186,7 +184,6 @@ spec:
           name: ingressgateway-ca-certs
           readOnly: true
       securityContext:
-        fsGroup: 1337
         runAsGroup: 1337
         runAsNonRoot: true
         runAsUser: 1337
